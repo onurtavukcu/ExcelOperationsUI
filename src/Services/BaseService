@@ -1,0 +1,23 @@
+// import Axios from "axios";
+
+// class Service
+// {
+//     service: any;
+//     constructor()
+//     {
+//         let service = Axios.create(
+//         {
+//             baseURL: "https://localhost:7005",
+//             responseType: 'json',
+//             timeout: 300000
+//         });    
+//         this.service  =service;
+
+//     }
+
+//     get(path) 
+//     {
+//         return this.service.get(path).then((response) => response.data);
+//     }    
+// }
+// export default Service;
