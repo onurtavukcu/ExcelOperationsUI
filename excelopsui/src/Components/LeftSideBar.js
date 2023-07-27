@@ -1,34 +1,21 @@
 import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router";
 
 export default function LeftSideBar(props) {
-  const [datas, setData] = useState([]);
-  //const [post, setPost] = useState(null);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5005/ExcelOperationsEndPoints/GetSomeDataV2")
-  //     .then((resp) => {
-  //       setPost(resp.data);
-  //     });
-  // }, []);
-
   const apisUrl = [
     "http://localhost:5005/ExcelOperationsEndPoints/GetSomeDataV2",
     "http://localhost:5005/ExcelOperationsEndPoints/GetSomeDataV3",
     "http://localhost:5005/ExcelOperationsEndPoints/GetSomeDataV4",
     "http://localhost:5005/ExcelOperationsEndPoints/GetSomeDataV5",
-    "http://localhost:5005/login",
   ];
 
   const handleItemClick1 = (url) => {
-    axios
-      .get(url)
+    axios({
+      method: "get",
+      url: url,
+    })
       .then((data) => {
         const result = data.data;
-        // console.log(result);
-        // setData(result);
         props.changeData(result);
       })
       .catch((error) => console.error(error));
@@ -38,16 +25,10 @@ export default function LeftSideBar(props) {
 
   function loginButton() {
     navigate("/login");
+  }
 
-    // axios
-    //   .get(url)
-    //   .then((data) => {
-    //     const result = data.data;
-    //     // console.log(result);
-    //     // setData(result);
-    //     props.changeData(result);
-    //   })
-    //   .catch((error) => console.error(error));
+  function MapsButton() {
+    navigate("/maps");
   }
 
   return (
@@ -83,7 +64,9 @@ export default function LeftSideBar(props) {
       <button className="sidebar-item" onClick={() => loginButton()}>
         Login
       </button>
-      <div>{datas}</div>
+      <button className="sidebar-item" onClick={() => MapsButton()}>
+        Maps
+      </button>
     </div>
   );
 }

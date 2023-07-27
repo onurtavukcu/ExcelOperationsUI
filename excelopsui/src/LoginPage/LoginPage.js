@@ -1,97 +1,87 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-
-import "./LoginPage.css";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
+import { Cookies } from "react-cookie";
 
-function LoginPage() {
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+const LoginPage = () => {
+  const [usernames, setUserName] = useState("");
+  const [passwords, setPassword] = useState("");
+  //const [cookie, setCookie] = useState("");
+  const navigate = useNavigate();
+  const navigates = useNavigate();
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
+  function HomePage() {
+    navigate("/");
+  }
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
-  };
+  function ErrorPage() {
+    navigates("/errorpage");
+  }
 
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    const userData = database.find((user) => user.username === uname.value);
-
-    const handleItemClick1 = (url) => {
-      axios
-        .get(url)
-        .then((data) => {
-          const result = data.data;
-        })
-        .catch((error) => console.error(error));
+  const authenticate = () => {
+    const data = {
+      userName: usernames,
+      password: passwords,
     };
 
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
+    axios
+      .post("http://localhost:5005/ExcelOperationsEndPoints/Authenticate", data)
+      .then((response) => {
+        console.log(response.data === true);
+        if (response.status === 200) {
+          //window.location.href = "/";
+          HomePage();
+        } else if (response.status === 401 || response.status === 400) {
+          //window.location.href = "/errorpage";
+          ErrorPage();
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 400) {
+          //window.location.href = "/errorpage";
+          ErrorPage();
+        } else {
+          console.error(error);
+        }
+      });
   };
 
-  // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
+  // useEffect(() => {
+  //   setCookies();
+  //   if (cookie != null) {
+  //     console.log("gavatssas");
+  //   }
+  // });
 
-  // JSX code for login form  BİTMETDİ TEKRA BAKILACAK
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
+  // async function setCookies() {
+  //   // const authResponse = await authenticate();
+
+  //   // if (authResponse != null) {
+  //   setCookie(Cookies.get("username"));
+
+  //   Cookies.set("username", usernames, { expires: 7 });
+  //   Cookies.set("password", passwords, { expires: 7 });
+  //   console.log(Cookies.get("username"));
+  //   // }
+  // }
 
   return (
-    <div className="apps">
-      <div className="login-form">
-        <div className="titles">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+    <div className="loginpage">
+      <h1>Please Log In</h1>
+      <label>
+        <p>Username</p>
+        <input type="text" onChange={(e) => setUserName(e.target.value)} />
+      </label>
+      <label>
+        <p>Password</p>
+        <input type="text" onChange={(e) => setPassword(e.target.value)} />
+      </label>
+      <div>
+        <button className="submit" onClick={() => authenticate()}>
+          Submitss
+        </button>
       </div>
     </div>
   );
-}
-
+};
 export default LoginPage;
