@@ -1,0 +1,79 @@
+.ReactTable {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border: 3px solid rgba(0, 0, 0, 0.753);
+    border-spacing: 0;
+    text-align: center;
+    padding: 3px 3px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    
+}
+
+.searchContainer
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tableHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.OrderBy
+{
+    color: rgb(0, 58, 165);
+    font-size: large;
+    cursor: pointer;    
+    padding: absolute;
+    padding-top: 2px;
+}
+
+.ReactTable .search
+{
+    text-align: left;
+    padding: 6px;
+}
+
+.ReactTable .CancelSort
+{
+    top: 3px;
+    padding: 6px;
+}
+
+tr:nth-child(even) {
+    background-color: #ff8a8a;
+}
+
+th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+.ContainerClassName
+{
+    width: 100%;
+    height: 100vh;
+}
+/* .title {
+  background-color: rgb(158, 94, 11);
+}
+.sidebars{
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.sidebars:hover,
+.sidebars.active {
+  background-color: #ccc;
+} */
