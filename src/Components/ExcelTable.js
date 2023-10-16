@@ -6,7 +6,7 @@ export default function ExcelTable(props) {
   const [search, setSearch] = useState("");
   const [sorting, setSorting] = useState(false);
 
-  console.log(props);
+  // console.log(props);
 
   const filteredData =
     props.body &&
