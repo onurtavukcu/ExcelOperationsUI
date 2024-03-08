@@ -7,7 +7,9 @@ class CommonService extends Component {
   };
 
   getZugangsdatenAktuell = async () => {
-    return await makeGetRequest("/ExcelOperationsEndPoints/GetSomeDataV3");
+    return await makeGetRequest(
+      "/ExcelOperationsEndPoints/GetSomeDataV4Pageging"
+    );
   };
 
   authenticateReq = (payload) => {

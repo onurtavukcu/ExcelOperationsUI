@@ -13,7 +13,6 @@
     padding: 3px 3px;
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    
 }
 
 .searchContainer
@@ -50,7 +49,7 @@
 }
 
 tr:nth-child(even) {
-    background-color: #ff8a8a;
+    background-color: #bbbbbb;
 }
 
 th {

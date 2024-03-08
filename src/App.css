@@ -25,10 +25,10 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: rgb(251, 97, 97);
 }
 
-@keyframes App-logo-spin {
+@keyframes Aspinpp-logo- {
   from {
     transform: rotate(0deg);
   }
@@ -40,27 +40,87 @@
 .sidebar {
   width: 200px;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: chocolate;
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column
 }
 
 .sidebar-item {
   margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 20px;
+  background-color: rgb(158, 180, 209);
+  color:  #fff;;
   cursor: pointer;
+  border: black;
+  font-size: medium;
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+  transition: all 2s ease-in-out;
 }
-.sidebar-item:hover,
+.sidebar-item:hover
+{
+  background-color: rgb(221, 80, 75);
+  transform: scale(1.05, 1.2);  
+  animation: wiggle1 1.5s linear infinite;
+}
+
+
+@keyframes wiggle1 {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: #333;
+  }
+  80% {
+    
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}
+
+
 .sidebar-item.active {
   background-color: #ccc;
 }
+
 .main-content {
   flex-grow: 1;
   padding: 20px;
 }
-
 
 .app {
   display: flex;
@@ -82,9 +142,14 @@
 }
 
 .title {
-  background-color: aqua;
+  text-align: center;
+  font-size: medium;  
 }
+.title:hover
+{
+  animation: wiggle 1.5s linear infinite;
 
+}
 .map-container {
   width: 100%;
   height: 100vh;

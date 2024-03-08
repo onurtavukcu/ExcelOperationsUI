@@ -50,17 +50,13 @@ const LoginPage = () => {
       .then((response) => {
         if (response.status === 200) {
           localStorage.setItem("token", response.data); //save token to local storage
-          //window.location.href = "/";
           HomePage();
         } else if (response.status === 401 || response.status === 400) {
-          //window.location.href = "/errorpage";
           ErrorPage();
         }
       })
       .catch((error) => {
         if (error.response.status === 401 || error.response.status === 400) {
-          //window.location.href = "/errorpage";
-          // ErrorPage();
           alert("Please check your auth info!");
         } else {
           console.error(error);

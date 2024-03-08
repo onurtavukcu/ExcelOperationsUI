@@ -12,12 +12,7 @@ export default function ExcelTable(props) {
     props.body &&
     props.body
       .filter((items) =>
-        items.some((item) =>
-          (item?.key || item?.props?.searchableText || item)
-            .toString()
-            .toLocaleLowerCase("TR")
-            .includes(search.toLocaleLowerCase("TR"))
-        )
+        items.some((item) => item?.key || item?.props?.searchableText || item)
       )
       .sort((a, b) => {
         if (sorting?.orderBy === "asc") {
